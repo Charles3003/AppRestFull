@@ -27,13 +27,15 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 try {
-                    Editable a = cep.getText();
+
                     CEP retorno = new HttpService(cep.getText().toString()).execute().get();
                     resposta.setText(retorno.toString());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
+
+                   /* HttpService oHttpService = new HttpService("");
+                    oHttpService.ChamadaGet();*/
+
+                } catch (Exception e) {
+                    e.getMessage();
                 }
             }
         });
