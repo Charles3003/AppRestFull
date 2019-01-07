@@ -31,7 +31,7 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
         StringBuilder resposta = new StringBuilder();
       /*  if (this.cep != null && this.cep.length() == 8) {*/
             try {
-                URL url = new URL("http://192.168.0.16:7010/balanco/continentes/2013");
+                URL url = new URL("http://192.168.108.241:7010/balanco/continentes/2013");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-type", "application/xml");
@@ -44,6 +44,8 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
                 while (scanner.hasNext()) {
                     resposta.append(scanner.next());
                 }
+                Gson o = new Gson();
+                //o.fromJson()
 
         } catch (MalformedURLException e) {
                 e.printStackTrace();
