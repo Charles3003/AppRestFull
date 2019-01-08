@@ -2,6 +2,7 @@ package com.example.charlesmarques.myapplication;
 
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -16,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class HttpService extends AsyncTask<Void, Void, CEP> {
@@ -44,8 +47,12 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
                 while (scanner.hasNext()) {
                     resposta.append(scanner.next());
                 }
-                Gson o = new Gson();
-                //o.fromJson()
+
+                Gson gson = new Gson();
+               BalancoComercialPorContinente[] user = gson.fromJson(resposta.toString(), BalancoComercialPorContinente[].class);
+                for (int i = 0; i < user.length; i++){
+                    Log.d("maria", user[i].getContinente());
+                }
 
         } catch (MalformedURLException e) {
                 e.printStackTrace();
