@@ -34,8 +34,8 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
                 URL url = new URL("http://192.168.0.16:7010/balanco/continentes/2013");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
-                connection.setRequestProperty("Content-type", "application/xml");
-                connection.setRequestProperty("Accept", "application/xml");
+                connection.setRequestProperty("Content-type", "application/json");
+                connection.setRequestProperty("Accept", "application/json");
                 connection.setDoOutput(true);
                 connection.setConnectTimeout(5000);
                 connection.connect();
