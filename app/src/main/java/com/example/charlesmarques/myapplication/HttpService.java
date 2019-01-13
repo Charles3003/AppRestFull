@@ -2,6 +2,7 @@ package com.example.charlesmarques.myapplication;
 
 import android.os.AsyncTask;
 import android.os.StrictMode;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -16,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class HttpService extends AsyncTask<Void, Void, CEP> {
@@ -31,7 +34,7 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
         StringBuilder resposta = new StringBuilder();
       /*  if (this.cep != null && this.cep.length() == 8) {*/
             try {
-                URL url = new URL("http://192.168.0.16:7010/balanco/continentes/2013");
+                URL url = new URL("http://192.168.108.241:7010/balanco/continentes/2013");
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.setRequestProperty("Content-type", "application/json");
@@ -43,6 +46,12 @@ public class HttpService extends AsyncTask<Void, Void, CEP> {
                 Scanner scanner = new Scanner(url.openStream());
                 while (scanner.hasNext()) {
                     resposta.append(scanner.next());
+                }
+
+                Gson gson = new Gson();
+               BalancoComercialPorContinente[] user = gson.fromJson(resposta.toString(), BalancoComercialPorContinente[].class);
+                for (int i = 0; i < user.length; i++){
+                    Log.d("maria", user[i].getContinente());
                 }
 
         } catch (MalformedURLException e) {
